@@ -34,22 +34,6 @@ function ToDo({ text, category, id }: IToDo) {
             )
           );
         })}
-        {/* {category !== Categories.DOING && (
-          <Button name={Categories.DOING} onClick={onClick}>
-            Doing
-          </Button>
-        )}
-
-        {category !== Categories.TO_DO && (
-          <Button name={Categories.TO_DO} onClick={onClick}>
-            To Do
-          </Button>
-        )}
-        {category !== Categories.DONE && (
-          <Button name={Categories.DONE} onClick={onClick}>
-            Done
-          </Button>
-        )} */}
       </HStack>
     </Box>
   );

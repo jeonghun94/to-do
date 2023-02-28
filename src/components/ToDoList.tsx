@@ -5,7 +5,6 @@ import {
   Grid,
   Heading,
   IconButton,
-  LightMode,
   Text,
   useColorMode,
   useColorModeValue,
@@ -22,7 +21,7 @@ import CategoryModal from "./CategoryModal";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
-function ToDoList() {
+const ToDoList = () => {
   const { toggleColorMode } = useColorMode();
   const logoColor = useColorModeValue("#3B81F6", "blue.200");
   const Icon = useColorModeValue(FaMoon, FaSun);
@@ -95,6 +94,6 @@ function ToDoList() {
       ))}
     </Box>
   );
-}
+};
 
 export default ToDoList;
