@@ -43,7 +43,7 @@ const ToDoList = () => {
           <CategoryModal />
         </Box>
         <Heading as={"h1"} textAlign={"center"} py={"3"}>
-          To Dos
+          To-Do
         </Heading>
 
         <IconButton
