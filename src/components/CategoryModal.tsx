@@ -51,6 +51,7 @@ const CategoryModal = () => {
         onClick={onOpen}
         aria-label="Toggle dark mode"
         icon={<FaPlus />}
+        color={"#3B81F6"}
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>

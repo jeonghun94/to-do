@@ -1,6 +1,13 @@
+import {
+  Input,
+  InputGroup,
+  InputRightElement,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { categoryState, toDoState } from "../atoms";
 
 interface IForm {
@@ -22,16 +29,25 @@ const CreateToDo = () => {
   useEffect(() => {
     localStorage.setItem("toDos", JSON.stringify(toDos));
   }, [toDos]);
+
   return (
-    <form onSubmit={handleSubmit(handleValid)}>
-      <input
-        {...register("toDo", {
-          required: "Please write a To Do",
-        })}
-        placeholder="Write a to do"
-      />
-      <button>Add</button>
-    </form>
+    <Box w={"100%"}>
+      <form onSubmit={handleSubmit(handleValid)}>
+        <InputGroup size="md">
+          <Input
+            {...register("toDo", {
+              required: "Please write a To Do",
+            })}
+            placeholder="Write a new to do"
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" type="submit">
+              ADD
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </form>
+    </Box>
   );
 };
 

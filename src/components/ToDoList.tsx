@@ -1,44 +1,43 @@
-import { FaAirbnb, FaMoon, FaSun } from "react-icons/fa";
 import {
   Box,
   Divider,
   Grid,
   Heading,
   IconButton,
+  Select,
   Text,
   useColorMode,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  Categories,
-  categoryState,
-  toDoSelector,
-  categoriesState,
-} from "../atoms";
+import { categoryState, toDoSelector, categoriesState } from "../atoms";
+import { FaMoon, FaSun } from "react-icons/fa";
 import CategoryModal from "./CategoryModal";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
 const ToDoList = () => {
+  const textMainColor = useColorModeValue("black", "white");
+  const borderColor = useColorModeValue("#E2E8F0", "E2E8F0");
   const { toggleColorMode } = useColorMode();
-  const logoColor = useColorModeValue("#3B81F6", "blue.200");
   const Icon = useColorModeValue(FaMoon, FaSun);
 
-  const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
-  const [categories, setCategories] = useRecoilState(categoriesState);
+  const categories = useRecoilValue(categoriesState);
+  const toDos = useRecoilValue(toDoSelector);
+
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
   };
   return (
-    <Box maxW={"480"} m={"auto"} p={"10"} border={`1px solid ${logoColor}`}>
+    <Box maxW={"480"} m={"auto"} p={"10"}>
       <Grid
         w={"100%"}
         gridTemplateColumns={"1fr 3fr 1fr"}
         placeItems={"center"}
-        color={logoColor}
+        color={"#3B81F6"}
       >
         <Box>
           <CategoryModal />
@@ -51,44 +50,44 @@ const ToDoList = () => {
           onClick={toggleColorMode}
           variant={"ghost"}
           aria-label="Toggle dark mode"
+          color={"#3B81F6"}
           icon={<Icon />}
         />
       </Grid>
+
       <Divider my={"3"} />
 
-      <Grid
-        w={"100%"}
-        gridTemplateColumns={"repeat(3, 1fr)"}
-        gap={10}
-        py={5}
-        border={"1px solid blue"}
-      >
+      <Grid w={"100%"} gridTemplateColumns={"repeat(4, 1fr)"} gap={5} py={5}>
         {categories.map((category, index) => (
           <Box
-            // bgColor={"#ebecf0"}
-            color={"#555555"}
-            borderRadius={"32px"}
-            p={"5"}
             key={index}
-            boxShadow={"md"}
-            // boxShadow={
-            //   "-6px -6px 10px rgb(255 255 255 / 60%), 4px 4px 18px #c0c0de, inset -8px -8px 16px rgb(255 255 255 / 10%), inset 8px 8px 18px #e8e8f3"
-            // }
+            borderRadius={"32px"}
+            fontSize={"sm"}
+            color={textMainColor}
+            borderWidth={"1px"}
+            borderColor={borderColor}
+            boxShadow={"sm"}
+            p={"1"}
           >
-            <Text textAlign={"center"}>{category}</Text>
+            <Text noOfLines={1} textAlign={"center"}>
+              {category}
+            </Text>
           </Box>
         ))}
       </Grid>
 
-      <br />
-      <select value={category} onInput={onInput}>
-        {categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      <CreateToDo />
+      <Divider my={"3"} />
+
+      <VStack gap={"3"}>
+        <Select value={category} onInput={onInput}>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </Select>
+        <CreateToDo />
+      </VStack>
       {toDos?.map((toDo) => (
         <ToDo key={toDo.id} {...toDo} />
       ))}
