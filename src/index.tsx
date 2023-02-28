@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { RecoilRoot } from "recoil";
-import { ThemeProvider } from "styled-components";
 import App from "./App";
-import { darkTheme } from "./theme";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import theme from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={darkTheme}>
+      <ChakraProvider>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
-      </ThemeProvider>
+      </ChakraProvider>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
