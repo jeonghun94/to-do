@@ -23,7 +23,6 @@
     "react-hook-form": "^7.43.2",
     "react-icons": "^4.7.1",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
@@ -61,5 +60,6 @@
     "@tanstack/react-query-devtools": "^4.24.10",
     "@types/react-helmet": "^6.1.6",
     "@types/styled-components": "^5.1.26"
-  }
+  },
+  "homepage": "https://jeonghun94.github.io/to-do"
 }
